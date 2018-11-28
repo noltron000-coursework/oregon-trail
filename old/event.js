@@ -3,6 +3,16 @@ var OregonH = OregonH || {};
 OregonH.Event = {};
 
 OregonH.Event.eventTypes = [
+	// Each of these items are events that change a parameter by a certain amount, and return a string colored based on the notification parameter.
+
+	// {
+	// 	 type: stat, shop, or attack.
+	// 	 notification: either positive or negative.
+	// 	 stat: the parameter key that needs to be changed.
+	// 	 value: the parameter value gets changed by this value.
+	// 	 text: the text displayed to the user.
+	// },
+
 	{
 		type: 'STAT-CHANGE',
 		notification: 'negative',
