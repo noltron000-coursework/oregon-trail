@@ -93,7 +93,6 @@ OregonH.Game.updateGame = function () {
 	//food consumption
 	this.caravan.consumeFood();
 
-	//game over no food
 	if (this.caravan.food === 0) {
 		this.ui.notify('Your caravan starved to death', 'negative');
 		this.gameActive = false;
@@ -124,8 +123,10 @@ OregonH.Game.updateGame = function () {
 		return;
 	}
 
-	//random events logic will go here..
-
+	//random events
+	if (Math.random() <= OregonH.EVENT_PROBABILITY) {
+		this.eventManager.generateEvent();
+	}
 };
 
 //pause the journey
