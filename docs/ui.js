@@ -167,8 +167,9 @@ OregonH.UI.runaway = function () {
 		this.notify('Everybody died running away', 'negative');
 	}
 
-	//remove event listener
-	document.getElementById('runaway').removeEventListener('click');
+	// remove event listener
+	// DON'T NEED THIS !!!!!
+	// document.getElementById('runaway').removeEventListener('click');
 
 	//resume journey
 	document.getElementById('attack').classList.add('hidden');
