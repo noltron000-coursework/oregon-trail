@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import { 
 	View, 
 	Text, 
-	Button
+	Button,
+	StyleSheet,
 } from 'react-native';
 
-export default class TitleScreen extends Component {
+class TitleScreen extends Component {
 	render() {
+		const { navigation } = this.props
+		const { navigate } = navigation
 		return (
-			<View>
+			<View style={styles.container}>
 				<Text>Oregon Trail</Text>
 				<Button
 					title='New Game'
-					onPress={()=>{console.log('hello')}}
+					onPress={()=>{navigate('Game')}}
 					/>
 				<Button
 					title='Settings'
@@ -26,3 +29,14 @@ export default class TitleScreen extends Component {
 		)
 	}
 }
+
+export default TitleScreen
+
+// TODO: move to external stylesheet
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+		justifyContent: 'center',
+	}
+});

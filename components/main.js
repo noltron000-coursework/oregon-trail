@@ -1,23 +1,27 @@
+// important items
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
+import {
+	createStackNavigator, 
+	createAppContainer,
+} from 'react-navigation';
+
+// get components
 import TitleScreen from './title-screen.js';
-import Game from './game.js'
+import Game from './game.js';
 
-export default class Main extends Component {
-	render() {
-		return (
-			<View style={styles.container}>
-				<TitleScreen/>
-			</View>
-		);
+// set up stack navigation
+const MainNavigator = createStackNavigator({
+	TitleScreen: { screen: TitleScreen }, // root of stack
+	Game: { screen: Game }, // game stacks on title screen
+},
+{
+	headerMode: 'none',
+	navigationOptions: {
+		headerVisible: false,
 	}
-}
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
 });
+
+const Main = createAppContainer(MainNavigator);
+
+export default Main;

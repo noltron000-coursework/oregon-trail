@@ -1,20 +1,21 @@
 // important items
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 // get components
-import GameHud from './game-hud.js'
+import GameHUD from './game-hud.js'
 import GameGraphics from './game-graphics.js'
 import GameDialogue from './game-dialogue.js'
 import GameButton from './game-button.js'
 
 // the primary object in the app
-export default class Game extends Component {
+class Game extends Component {
 	render() {
 		return (
 			<View>
+				<Text>You are on the game screen</Text>
 				{/* these components are always drawn */}
-				<GameHud />
+				<GameHUD />
 				<GameGraphics />
 				{/* appears when there is a player option */}
 				<GameDialogue />
@@ -24,3 +25,5 @@ export default class Game extends Component {
 		)
 	}
 }
+
+export default Game
