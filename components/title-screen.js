@@ -16,15 +16,15 @@ class TitleScreen extends Component {
 				<Button
 					title='New Game'
 					onPress={()=>{navigate('Game')}}
-					/>
+				/>
 				<Button
 					title='Settings'
 					onPress={()=>{console.log('')}}
-					/>
+				/>
 				<Button
 					title='Exit'
 					onPress={()=>{console.log('goodbye')}}
-					/>
+				/>
 			</View>
 		)
 	}
