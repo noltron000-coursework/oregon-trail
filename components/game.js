@@ -33,42 +33,57 @@ class Game extends Component {
 			<View style={styles.container}>
 				<Text>You are on the game screen</Text>
 				<Modal
+					
 					transparent={true}
 					visible={this.state.modalVisible}
+					onRequestClose={()=>{}}
 				>
 					<View style={styles.popup}>
-						<Button
-							title='Buy Food'
-							onPress={()=>{
-								let {gold, food, days} = this.state
-								this.setState({gold: gold-1, food: food+1})
-							}}
-						/>
-						<Button
-							title='Hide Modal'
-							onPress={()=>{
-								this.setModalVisible(!this.state.modalVisible)
-							}}
-						/>
+						<Text>You found a food store. Do you want to buy something?</Text>
+						<View style={styles.buttonView}>
+							<Button
+								title='Buy Food'
+								onPress={()=>{
+									let {gold, food, days} = this.state
+									this.setState({gold: gold-1, food: food+1})
+									this.setModalVisible(!this.state.modalVisible)
+								}}
+							/>
+						</View>
+
+						<View style={styles.buttonView}>
+							<Button
+								title='Hide Modal'
+								onPress={()=>{
+									this.setModalVisible(!this.state.modalVisible)
+								}}
+							/>
+						</View>
+
 					</View>
 				</Modal>
 				{/* these components are always drawn */}
-				<GameHUD />
-				<Text>days: {this.state.days}</Text>
-				<Text>food: {this.state.food}</Text>
-				<Text>gold: {this.state.gold}</Text>
+				<GameHUD
+					days = {this.state.days}
+					food = {this.state.food}
+					gold = {this.state.gold}
+				/>
 				<GameGraphics />
 				{/* appears when there is a player option */}
 				<GameDialogue />
 				{/* progresses game objective; next encounter */}
-				<Button
-					title='Game Button'
-					onPress={()=>{
-						let {gold, food, days} = this.state
-						this.setState({days: days+1, food: food-1})
-						this.setModalVisible(!this.state.modalVisible)
-					}}
-				/>
+
+				<View style={styles.buttonView}>
+					<Button
+						title='Game Button'
+						onPress={()=>{
+							let {gold, food, days} = this.state
+							this.setState({days: days+1, food: food-1})
+							this.setModalVisible(!this.state.modalVisible)
+						}}
+					/>
+				</View>
+
 				{/* <GameButton type='set-out' /> */}
 			</View>
 		)
@@ -81,12 +96,18 @@ export default Game
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#fff',
 		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#fff',
 	},
 	popup: {
 		flex: 1,
-		backgroundColor: 'rgba(0,0,0,0.5)',
 		justifyContent: 'center',
-	}
+		alignItems: 'center',
+		backgroundColor: '#000C',
+	},
+	buttonView: {
+		marginTop: 10,
+		width: 200,
+	},
 })
