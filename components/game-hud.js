@@ -8,7 +8,7 @@ class GameHUD extends Component {
 		return (
 			<View>
 				<Text>Game Hud</Text>
-				<Text>days: {this.props.days}</Text>
+				<Text>day: {this.props.day}</Text>
 				<Text>food: {this.props.food}</Text>
 				<Text>gold: {this.props.gold}</Text>
 			</View>

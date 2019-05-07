@@ -21,7 +21,7 @@ class Game extends Component {
 		modalVisible: true,
 		gold: 20,
 		food: 10,
-		days: 0,
+		day: 0,
 	}
 
 	setModalVisible(visible) {
@@ -44,7 +44,7 @@ class Game extends Component {
 							<Button
 								title='Buy Food'
 								onPress={()=>{
-									let {gold, food, days} = this.state
+									let {gold, food, day} = this.state
 									this.setState({gold: gold-1, food: food+1})
 									this.setModalVisible(!this.state.modalVisible)
 								}}
@@ -64,7 +64,7 @@ class Game extends Component {
 				</Modal>
 				{/* these components are always drawn */}
 				<GameHUD
-					days = {this.state.days}
+					day = {this.state.day}
 					food = {this.state.food}
 					gold = {this.state.gold}
 				/>
@@ -77,9 +77,18 @@ class Game extends Component {
 					<Button
 						title='Game Button'
 						onPress={()=>{
-							let {gold, food, days} = this.state
-							this.setState({days: days+1, food: food-1})
+							let {gold, food, day} = this.state
+							this.setState({day: day+1, food: food-1})
 							this.setModalVisible(!this.state.modalVisible)
+						}}
+					/>
+				</View>
+
+				<View style={styles.buttonView}>
+					<Button
+						title='Next Day'
+						onPress={()=>{
+							console.log('use redux!!!')
 						}}
 					/>
 				</View>
