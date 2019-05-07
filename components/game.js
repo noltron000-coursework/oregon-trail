@@ -8,6 +8,10 @@ import {
 	Modal,
 	StyleSheet,
 } from 'react-native'
+import { connect } from 'react-redux'
+
+// functions etc
+import { setOut } from '../actions/index.js'
 
 // get components
 import GameHUD from './game-hud.js'
@@ -33,7 +37,7 @@ class Game extends Component {
 			<View style={styles.container}>
 				<Text>You are on the game screen</Text>
 				<Modal
-					
+					style={styles.statHUD}
 					transparent={true}
 					visible={this.state.modalVisible}
 					onRequestClose={()=>{}}
@@ -62,9 +66,10 @@ class Game extends Component {
 
 					</View>
 				</Modal>
+
 				{/* these components are always drawn */}
 				<GameHUD
-					day = {this.state.day}
+					day = {this.props.game.day}
 					food = {this.state.food}
 					gold = {this.state.gold}
 				/>
@@ -88,7 +93,7 @@ class Game extends Component {
 					<Button
 						title='Next Day'
 						onPress={()=>{
-							console.log('use redux!!!')
+							this.props.setOut()
 						}}
 					/>
 				</View>
@@ -99,7 +104,15 @@ class Game extends Component {
 	}
 }
 
-export default Game
+const mapStateToProps = (state) => {
+	return { game: state.game }
+}
+
+const mapDispatchToProps = (state) => {
+	return { setOut }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps())(Game)
 
 // TODO: move to external stylesheet
 const styles = StyleSheet.create({
@@ -118,5 +131,8 @@ const styles = StyleSheet.create({
 	buttonView: {
 		marginTop: 10,
 		width: 200,
+	},
+	statHUD: {
+		position: 'absolute',
 	},
 })

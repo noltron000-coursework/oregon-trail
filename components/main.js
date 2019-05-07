@@ -15,11 +15,12 @@ const MainNavigator = createStackNavigator({
 	TitleScreen: { screen: TitleScreen }, // root of stack
 	Game: { screen: Game }, // game stacks on title screen
 },
+
 {
 	headerMode: 'none',
 	navigationOptions: {
 		headerVisible: false,
-	}
+	},
 });
 
 const Main = createAppContainer(MainNavigator);
