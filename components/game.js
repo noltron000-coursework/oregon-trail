@@ -1,14 +1,12 @@
 // important items
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
 	View,
 	Text,
 	Button,
-	TouchableHighlight,
-	Modal,
 	StyleSheet,
 } from 'react-native'
-import { connect } from 'react-redux'
 
 // functions etc
 import { 
@@ -26,46 +24,10 @@ import GameButton from './game-button.js'
 
 // the primary object in the app
 class Game extends Component {
-	state = {
-		modalVisible: true,
-		gold: 20,
-		food: 10,
-		day: 0,
-	}
-
 	render() {
 		return (
 			<View style={styles.container}>
 				<Text>You are on the game screen</Text>
-				<Modal
-					style={styles.statHUD}
-					transparent={true}
-					visible={this.props.game.modalVisible}
-					onRequestClose={()=>{}}
-				>
-					<View style={styles.popup}>
-						<Text>You found a food store. Do you want to buy something?</Text>
-						<View style={styles.buttonView}>
-							<Button
-								title='Buy Food'
-								onPress={()=>{
-									this.props.setOut()
-									this.props.hideModal()
-								}}
-							/>
-						</View>
-
-						<View style={styles.buttonView}>
-							<Button
-								title='Hide Modal'
-								onPress={()=>{
-									this.props.hideModal()
-								}}
-							/>
-						</View>
-
-					</View>
-				</Modal>
 
 				{/* these components are always drawn */}
 				<GameHUD

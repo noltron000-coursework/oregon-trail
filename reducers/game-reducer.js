@@ -9,7 +9,14 @@ import {
 	checkGameOver,
 } from '../actions/index.js'
 
-export default gameReducer = (OldState={day: 0, modalVisible: false, food: 0, gold: 30}, action) => {
+const State = {
+	modalVisible: false, 
+	day: 0,
+	food: 0,
+	gold: 30,
+}
+
+export default gameReducer = (OldState=State, action) => {
 	const NewState = { ...OldState }
 	switch (action.type) {
 
