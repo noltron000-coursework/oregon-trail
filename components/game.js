@@ -11,7 +11,12 @@ import {
 import { connect } from 'react-redux'
 
 // functions etc
-import { setOut } from '../actions/index.js'
+import { 
+	setOut,
+	hideModal,
+	showModal,
+	checkGameOver,
+} from '../actions/index.js'
 
 // get components
 import GameHUD from './game-hud.js'
@@ -28,10 +33,6 @@ class Game extends Component {
 		day: 0,
 	}
 
-	setModalVisible(visible) {
-		this.setState({modalVisible: visible})
-	}
-
 	render() {
 		return (
 			<View style={styles.container}>
@@ -39,7 +40,7 @@ class Game extends Component {
 				<Modal
 					style={styles.statHUD}
 					transparent={true}
-					visible={this.state.modalVisible}
+					visible={this.props.game.modalVisible}
 					onRequestClose={()=>{}}
 				>
 					<View style={styles.popup}>
@@ -48,9 +49,8 @@ class Game extends Component {
 							<Button
 								title='Buy Food'
 								onPress={()=>{
-									let {gold, food, day} = this.state
-									this.setState({gold: gold-1, food: food+1})
-									this.setModalVisible(!this.state.modalVisible)
+									this.props.setOut()
+									this.props.hideModal()
 								}}
 							/>
 						</View>
@@ -59,7 +59,7 @@ class Game extends Component {
 							<Button
 								title='Hide Modal'
 								onPress={()=>{
-									this.setModalVisible(!this.state.modalVisible)
+									this.props.hideModal()
 								}}
 							/>
 						</View>
@@ -70,8 +70,8 @@ class Game extends Component {
 				{/* these components are always drawn */}
 				<GameHUD
 					day = {this.props.game.day}
-					food = {this.state.food}
-					gold = {this.state.gold}
+					food = {this.props.game.food}
+					gold = {this.props.game.gold}
 				/>
 				<GameGraphics />
 				{/* appears when there is a player option */}
@@ -82,9 +82,7 @@ class Game extends Component {
 					<Button
 						title='Game Button'
 						onPress={()=>{
-							let {gold, food, day} = this.state
-							this.setState({day: day+1, food: food-1})
-							this.setModalVisible(!this.state.modalVisible)
+							this.props.showModal()
 						}}
 					/>
 				</View>
@@ -109,7 +107,12 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (state) => {
-	return { setOut }
+	return { 
+		setOut,
+		showModal,
+		hideModal,
+		checkGameOver,
+	}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps())(Game)
