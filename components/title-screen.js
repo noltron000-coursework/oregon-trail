@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { 
 	View, 
 	Text, 
 	Button,
 	StyleSheet,
-} from 'react-native';
+} from 'react-native'
 
 class TitleScreen extends Component {
 	render() {
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		textAlign: 'center',
 	},
-});
+})

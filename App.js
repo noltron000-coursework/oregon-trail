@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Main from './components/main.js'
 
 import { createStore } from 'redux'

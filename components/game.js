@@ -76,7 +76,7 @@ class Game extends Component {
 				<GameGraphics />
 				{/* appears when there is a player option */}
 				<GameDialogue />
-				{/* progresses game objective; next encounter */}
+				{/* progresses game objective next encounter */}
 
 				<View style={styles.buttonView}>
 					<Button
