@@ -3,10 +3,14 @@ import {
 	SHOW_MODAL,
 	HIDE_MODAL,
 	CHECK_GAME_OVER,
+	BUY_FOOD,
+	SELL_FOOD,
 	setOut,
 	showModal,
 	hideModal,
 	checkGameOver,
+	buyFood,
+	sellFood,
 } from '../actions/index.js'
 
 const State = {
@@ -27,13 +31,13 @@ export default gameReducer = (OldState=State, action) => {
 
 		case CHECK_GAME_OVER:
 			// check lose conditions before win conditions
-			if (OldState.food <= 0) {
+			if (OldState.food < 0) {
 				NewState.food = 0
 				console.log("you lost!")
 			} else if (OldState.day >= 30) {
-				// check win conditions if no lose
+				// check win conditions if they did not lose
 				console.log("you won!")
-			}
+			} 
 			// always return NewState
 			return NewState
 
@@ -43,6 +47,16 @@ export default gameReducer = (OldState=State, action) => {
 
 		case SHOW_MODAL:
 			NewState.modalVisible = true
+			return NewState
+
+		case BUY_FOOD:
+			NewState.gold -= 1
+			NewState.food += 20
+			return NewState
+
+		case SELL_FOOD:
+			NewState.food -= 30
+			NewState.gold += 1
 			return NewState
 
 		default: 

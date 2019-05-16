@@ -44,16 +44,9 @@ class Game extends Component {
 					<Button
 						title='Game Button'
 						onPress={()=>{
-							this.props.showModal()
-						}}
-					/>
-				</View>
-
-				<View style={styles.buttonView}>
-					<Button
-						title='Next Day'
-						onPress={()=>{
 							this.props.setOut()
+							this.props.showModal()
+							this.props.checkGameOver()
 						}}
 					/>
 				</View>
@@ -77,7 +70,8 @@ const mapDispatchToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps())(Game)
+Game = connect(mapStateToProps, mapDispatchToProps())(Game)
+export default Game
 
 // TODO: move to external stylesheet
 const styles = StyleSheet.create({

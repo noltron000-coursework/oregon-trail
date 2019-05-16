@@ -12,6 +12,8 @@ import {
 // functions etc
 import { 
 	setOut,
+	buyFood,
+	sellFood,
 	hideModal,
 	showModal,
 	checkGameOver,
@@ -29,22 +31,37 @@ class GameDialogue extends Component {
 				>
 
 					<View style={styles.popup}>
-						<Text>You found a food store. Do you want to buy something?</Text>
+						<Text>
+							You found a food store.
+							Do you want to buy something?
+						</Text>
+
 						<View style={styles.buttonView}>
 							<Button
-								title='Buy Food'
+								title='Buy Food (-1 Gold; +20 Food)'
+								disabled={ this.props.gold < 1 }
+								// ^^^ THIS IS NOT ACTIVATING
 								onPress={ () => {
-									this.props.setOut()
-									this.props.hideModal()
+									this.props.buyFood()
 								}}
 							/>
 						</View>
 
 						<View style={styles.buttonView}>
 							<Button
-								title='Hide Modal'
+								title='Sell Food (+1 Gold; -30 Food)'
+								disabled={ this.props.food < 30 }
+								// ^^^ THIS IS NOT ACTIVATING
 								onPress={ () => {
-									this.props.setOut()
+									this.props.sellFood()
+								}}
+							/>
+						</View>
+
+						<View style={styles.buttonView}>
+							<Button
+								title='Leave Store'
+								onPress={ () => {
 									this.props.hideModal()
 								}}
 							/>
@@ -63,13 +80,16 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (state) => {
 	return { 
 		setOut,
-		showModal,
+		buyFood,
+		sellFood,
 		hideModal,
+		showModal,
 		checkGameOver,
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps())(GameDialogue)
+GameDialogue = connect(mapStateToProps, mapDispatchToProps())(GameDialogue)
+export default GameDialogue
 
 // TODO: move to external stylesheet
 const styles = StyleSheet.create({
